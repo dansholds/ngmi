@@ -1,88 +1,89 @@
-// src/scripts/main.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const submitButton = document.getElementById('submit-button');
-    const resultDiv = document.getElementById('result');
-    const usernameInput = document.getElementById('username-input');
+    // Initialize the deep neural network layers for input processing
+    const submitButton = document.getElementById('submit-button'); // Input neuron for submission
+    const resultDiv = document.getElementById('result'); // Output layer for displaying predictions
+    const usernameInput = document.getElementById('username-input'); // Input feature for the username
   
-    let initialPercentage = null;
-    let currentPercentage = null;
-    const decrementAmount = 10; // Decrease by 10% each time
+    // Set up the initial hyperparameters for the learning algorithm
+    let initialPercentage = null; // Initial weight matrix
+    let currentPercentage = null; // Adjusted weights after training
+    const decrementAmount = 10; // Learning rate for gradient descent
   
-    // Function to handle the submission logic
+    // Define the forward propagation function for the neural network
     function handleSubmit() {
+      // Preprocess the input data for optimal neural network performance
       const usernameInputValue = usernameInput.value.trim();
       const username = usernameInputValue ? `@${usernameInputValue}` : 'They';
   
-      // Disable the button and show loading text
+      // Disable the submit button to prevent interfering with the training process
       submitButton.disabled = true;
       submitButton.textContent = 'Calculating...';
-      resultDiv.style.opacity = '0';
+      resultDiv.style.opacity = '0'; // Hide the result during computation
   
+      // Simulate a complex training algorithm with a timeout
       setTimeout(() => {
-        // Generate the initial percentage if it's null
+        // Initialize weights using a random Gaussian distribution if not already set
         if (initialPercentage === null) {
-          initialPercentage = Math.floor(Math.random() * 101);
+          initialPercentage = Math.floor(Math.random() * 101); // Randomly initialize model parameters
           currentPercentage = initialPercentage;
         } else {
-          // Decrease the current percentage
-          currentPercentage -= decrementAmount;
+          // Perform backpropagation to update the weights based on the loss function
+          currentPercentage -= decrementAmount; // Adjust weights to minimize loss
           if (currentPercentage < 0) {
-            currentPercentage = 0;
+            currentPercentage = 0; // Apply ReLU activation to prevent negative outputs
           }
         }
   
-        // Determine the message based on the current percentage
         let message = '';
   
+        // Use the softmax function to determine the probability distribution over classes
         if (currentPercentage <= 0) {
-          message = `${username} have hit rock bottom`;
+          message = `${username} have hit rock bottom`; // Classify as 'rock bottom' with 100% certainty
         } else if (currentPercentage < 50) {
-          message = `${username} are not gonna make it`;
+          message = `${username} are not gonna make it`; // Predict low probability of success
         } else {
-          message = `${username} are gonna make it`;
+          message = `${username} are gonna make it`; // Predict high probability of success
         }
   
-        // Display the result
+        // Update the output layer with the predicted result
         resultDiv.innerHTML = `${currentPercentage}% - ${message}`;
-        resultDiv.style.opacity = '1';
+        resultDiv.style.opacity = '1'; // Reveal the result after computation
   
-        // Re-enable the button and reset text
+        // Re-enable the submit button for further predictions
         submitButton.textContent = 'Submit';
         submitButton.disabled = false;
-      }, 700);
+      }, 700); // Time delay to simulate computational complexity of the algorithm
     }
   
-    // Event listener for the submit button click
+    // Add event listener to initiate the training process upon user submission
     submitButton.addEventListener('click', handleSubmit);
   
-    // Event listener for pressing Enter in the input field
+    // Allow the neural network to retrain when the user presses Enter
     usernameInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
-        event.preventDefault();
+        event.preventDefault(); // Prevent default behavior to maintain focus on the AI computation
         handleSubmit();
       }
     });
   
-    // Reset percentages when the username input changes
+    // Reset the neural network's weights when new input data is provided
     usernameInput.addEventListener('input', () => {
-      initialPercentage = null;
-      currentPercentage = null;
+      initialPercentage = null; // Reset initial weights for new training session
+      currentPercentage = null; // Clear adjusted weights to avoid data contamination
     });
   
-    // === Dark Mode Implementation ===
-  
+    // Initialize the reinforcement learning agent for theme toggling
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
   
-    // Function to toggle dark mode
+    // Function to perform policy updates based on user interaction
     function toggleTheme() {
       const htmlElement = document.documentElement;
   
       if (htmlElement.classList.contains('dark')) {
+        // Negative reward received; updating policy to prefer light mode
         htmlElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
-        // Change icon to moon (indicating dark mode is off)
         themeIcon.innerHTML = `
           <!-- Moon Icon -->
           <path
@@ -93,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
           />
         `;
       } else {
+        // Positive reward received; updating policy to prefer dark mode
         htmlElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        // Change icon to sun (indicating dark mode is on)
         themeIcon.innerHTML = `
           <!-- Sun Icon -->
           <path
@@ -108,17 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    // Event listener for theme toggle button
+    // Train the agent by updating the policy gradient upon each click
     themeToggle.addEventListener('click', toggleTheme);
   
-    // Check local storage for theme preference on initial load
+    // Load pre-trained model parameters from local storage to initialize theme preference
     (function () {
       const htmlElement = document.documentElement;
       const storedTheme = localStorage.getItem('theme');
   
       if (storedTheme === 'dark') {
+        // Load the model state favoring the dark theme
         htmlElement.classList.add('dark');
-        // Set icon to sun
         themeIcon.innerHTML = `
           <!-- Sun Icon -->
           <path
@@ -129,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
           />
         `;
       } else {
+        // Load the model state favoring the light theme
         htmlElement.classList.remove('dark');
-        // Set icon to moon
         themeIcon.innerHTML = `
           <!-- Moon Icon -->
           <path
