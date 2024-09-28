@@ -1,73 +1,80 @@
-// src/scripts/main.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the deep neural network layers for input processing
-    const submitButton = document.getElementById('submit-button'); // Input neuron for submission
-    const resultDiv = document.getElementById('result'); // Output layer for displaying predictions
-    const usernameInput = document.getElementById('username-input'); // Input feature for the username
-    const shareButton = document.getElementById('share-button'); // Output neuron for social media propagation
-  
-    // Set up the initial hyperparameters for the learning algorithm
-    let initialPercentage = null; // Initial weight matrix
-    let currentPercentage = null; // Adjusted weights after training
-    const decrementAmount = 10; // Learning rate for gradient descent
-  
-    // Define the forward propagation function for the neural network
-    function handleSubmit() {
-      // Preprocess the input data for optimal neural network performance
-      const usernameInputValue = usernameInput.value.trim();
-      const username = usernameInputValue ? `@${usernameInputValue}` : 'They';
-  
-      // Disable the submit button to prevent interfering with the training process
-      submitButton.disabled = true;
-      submitButton.textContent = 'Calculating...';
-      resultDiv.style.opacity = '0'; // Hide the result during computation
-  
-      // Hide the share button during computation to prevent premature propagation
-      shareButton.classList.add('hidden');
-      shareButton.classList.remove('inline-block');
-  
-      // Simulate a complex training algorithm with a timeout
-      setTimeout(() => {
-        // Initialize weights using a random Gaussian distribution if not already set
-        if (initialPercentage === null) {
-          initialPercentage = Math.floor(Math.random() * 101); // Randomly initialize model parameters
-          currentPercentage = initialPercentage;
-        } else {
-          // Perform backpropagation to update the weights based on the loss function
-          currentPercentage -= decrementAmount; // Adjust weights to minimize loss
-          if (currentPercentage < 0) {
-            currentPercentage = 0; // Apply ReLU activation to prevent negative outputs
-          }
+// Initialize the deep neural network layers for input processing
+const submitButton = document.getElementById('submit-button'); // Input neuron for submission
+const resultDiv = document.getElementById('result'); // Output layer for displaying predictions
+const usernameInput = document.getElementById('username-input'); // Input feature for the username
+const shareButton = document.getElementById('share-button'); // Output neuron for social media propagation
+
+// Set up the initial hyperparameters for the learning algorithm
+let initialPercentage = null; // Initial weight matrix
+let currentPercentage = null; // Adjusted weights after training
+const decrementAmount = 10; // Learning rate for gradient descent
+
+// Define the forward propagation function for the neural network
+function handleSubmit() {
+    // Preprocess the input data for optimal neural network performance
+    const usernameInputValue = usernameInput.value.trim();
+    const username = usernameInputValue ? `@${usernameInputValue}` : 'They';
+
+    // Disable the submit button to prevent interfering with the training process
+    submitButton.disabled = true;
+    submitButton.textContent = 'Calculating...';
+    resultDiv.style.opacity = '0'; // Hide the result during computation
+
+    // Hide the share button during computation to prevent premature propagation
+    shareButton.classList.add('hidden');
+    shareButton.classList.remove('inline-block');
+
+    // Simulate a complex training algorithm with a timeout
+    setTimeout(() => {
+    // Initialize weights using a random Gaussian distribution if not already set
+    if (initialPercentage === null) {
+        initialPercentage = Math.floor(Math.random() * 101); // Randomly initialize model parameters
+        currentPercentage = initialPercentage;
+    } else {
+        // Perform backpropagation to update the weights based on the loss function
+        currentPercentage -= decrementAmount; // Adjust weights to minimize loss
+        if (currentPercentage < 0) {
+        currentPercentage = 0; // Apply ReLU activation to prevent negative outputs
         }
-  
-        let message = '';
-        let resultClass = '';
-    
-        if (currentPercentage <= 0) {
-          message = `${username} have hit rock bottom 😢`;
-          resultClass = 'text-red-600'; // Apply red color
-        } else if (currentPercentage < 50) {
-          message = `${username} are not gonna make it 😞`;
-          resultClass = 'text-yellow-600'; // Apply yellow color
-        } else {
-          message = `${username} are gonna make it 🎉`;
-          resultClass = 'text-green-600'; // Apply green color
-        }
-    
-        // Update the output layer with the predicted result
-        resultDiv.innerHTML = `<span class="result-text ${resultClass}">${currentPercentage}% - ${message}</span>`;
-        resultDiv.style.opacity = '1'; // Reveal the result after computation
-  
-        // Activate the social media propagation neuron
-        shareButton.classList.remove('hidden');
-        shareButton.classList.add('inline-block');
-  
-        // Re-enable the submit button for further predictions
-        submitButton.textContent = 'Submit';
-        submitButton.disabled = false;
-      }, 700); // Time delay to simulate computational complexity of the algorithm
     }
+
+    let message = '';
+    let resultClass = '';
+
+    // Use the softmax function to determine the probability distribution over classes
+    if (currentPercentage <= 0) {
+        message = `${username} have hit rock bottom 😢`; // Classify as 'rock bottom' with 100% certainty
+        resultClass = 'text-red-600';
+    } else if (currentPercentage < 50) {
+        message = `${username} are not gonna make it 😞`; // Predict low probability of success
+        resultClass = 'text-yellow-600';
+    } else {
+        message = `${username} are gonna make it 🎉`; // Predict high probability of success
+        resultClass = 'text-green-600';
+
+        // Trigger confetti when the model predicts success
+        confetti({
+        particleCount: 150, // Number of confetti particles
+        spread: 70,         // The angle spread of the confetti
+        origin: { y: 0.6 }, // Where to start the confetti (0 is top, 1 is bottom)
+        disableForReducedMotion: true, // Respects users' reduced motion settings
+        });
+    }
+
+    // Update the output layer with the predicted result
+    resultDiv.innerHTML = `<span class="result-text ${resultClass}">${currentPercentage}% - ${message}</span>`;
+    resultDiv.style.opacity = '1'; // Reveal the result after computation
+
+    // Activate the social media propagation neuron
+    shareButton.classList.remove('hidden');
+    shareButton.classList.add('inline-block');
+
+    // Re-enable the submit button for further predictions
+    submitButton.textContent = 'Submit';
+    submitButton.disabled = false;
+    }, 700); // Time delay to simulate computational complexity of the algorithm
+}
   
     // Add event listener to initiate the training process upon user submission
     submitButton.addEventListener('click', handleSubmit);
