@@ -42,18 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
   
         let message = '';
-  
-        // Use the softmax function to determine the probability distribution over classes
+        let resultClass = '';
+    
         if (currentPercentage <= 0) {
-          message = `${username} have hit rock bottom`; // Classify as 'rock bottom' with 100% certainty
+          message = `${username} have hit rock bottom 😢`;
+          resultClass = 'text-red-600'; // Apply red color
         } else if (currentPercentage < 50) {
-          message = `${username} is not gonna make it`; // Predict low probability of success
+          message = `${username} are not gonna make it 😞`;
+          resultClass = 'text-yellow-600'; // Apply yellow color
         } else {
-          message = `${username} is gonna make it`; // Predict high probability of success
+          message = `${username} are gonna make it 🎉`;
+          resultClass = 'text-green-600'; // Apply green color
         }
-  
+    
         // Update the output layer with the predicted result
-        resultDiv.innerHTML = `${currentPercentage}% - ${message}`;
+        resultDiv.innerHTML = `<span class="result-text ${resultClass}">${currentPercentage}% - ${message}</span>`;
         resultDiv.style.opacity = '1'; // Reveal the result after computation
   
         // Activate the social media propagation neuron

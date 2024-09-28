@@ -33,6 +33,8 @@ import '../styles/global.css';
 	  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
 	  rel="stylesheet"
 	>
+	</head>
+
 	<body class="flex items-center justify-center min-h-screen bg-background text-gray-900 relative">
 		<button id="theme-toggle" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none">
 			<svg id="theme-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,43 +47,43 @@ import '../styles/global.css';
 			  />
 			</svg>
 		  </button>
-    <main id="app" class="text-center px-4">
-		<h1 class="text-5xl font-extrabold mb-8 dark:text-white text-black">Not Gonna Make It</h1>
-		<p class="mt-8 text-sm text-gray-500">
-			I cannot be held responsible for any feelings of inadequacy that may arise from using this tool.
-		  </p>
+		<main id="app" class="text-center px-4">
+			<h1 class="text-5xl font-extrabold mb-8 dark:text-white text-black">Not Gonna Make It</h1>
+			<p class="mt-8 text-sm text-gray-500">
+				I cannot be held responsible for any feelings of inadequacy that may arise from using this tool.
+			</p>
 
-		<br>
+			<br>
 
-      <div class="flex items-center justify-center mb-4">
-        <label for="username-input" class="sr-only">Twitter Username</label>
-        <input
-          type="text"
-          id="username-input"
-          class="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          placeholder="Enter Twitter username"
-        />
-        <button
-			id="submit-button"
-			class="px-4 py-2 bg-primary text-white rounded-r-full hover:bg-indigo-600 focus:outline-none transform transition-transform duration-200 hover:scale-105"
+		<div class="flex items-center justify-center mb-4">
+			<label for="username-input" class="sr-only">Twitter Username</label>
+			<input
+			type="text"
+			id="username-input"
+			class="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+			placeholder="Enter Twitter username"
+			/>
+			<button
+				id="submit-button"
+				class="px-4 py-2 bg-primary text-white rounded-r-full hover:bg-indigo-600 focus:outline-none transform transition-transform duration-200 hover:scale-105"
+				>
+			Submit
+			</button>
+		</div>
+		<div
+			id="result"
+			class="mt-6 opacity-0 transition-opacity duration-700 ease-in-out"
+			aria-live="polite"
+		></div>
+	  
+		<button
+			id="share-button"
+			class="mt-4 px-4 py-2 bg-primary text-white rounded-full hover:bg-blue-600 focus:outline-none hidden"
 			>
-		Submit
-		</button>
-	  </div>
-      <div
-        id="result"
-        class="mt-6 text-2xl font-semibold opacity-0 transition-opacity duration-700 ease-in-out"
-        aria-live="polite"
-      ></div>
-	  <button
-		id="share-button"
-		class="mt-4 px-4 py-2 bg-primary text-white rounded-full hover:bg-blue-600 focus:outline-none hidden"
-		>
-		Share on Twitter
-		</button>
-    </main>
+			Share on Twitter
+			</button>
+		</main>
     <script src="/src/scripts/main.js"></script>
-	
   </body>
   
   <footer class="absolute bottom-4 text-center w-full text-sm text-gray-500">
