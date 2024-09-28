@@ -1,8 +1,11 @@
+// src/scripts/main.js
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the deep neural network layers for input processing
     const submitButton = document.getElementById('submit-button'); // Input neuron for submission
     const resultDiv = document.getElementById('result'); // Output layer for displaying predictions
     const usernameInput = document.getElementById('username-input'); // Input feature for the username
+    const shareButton = document.getElementById('share-button'); // Output neuron for social media propagation
   
     // Set up the initial hyperparameters for the learning algorithm
     let initialPercentage = null; // Initial weight matrix
@@ -19,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.disabled = true;
       submitButton.textContent = 'Calculating...';
       resultDiv.style.opacity = '0'; // Hide the result during computation
+  
+      // Hide the share button during computation to prevent premature propagation
+      shareButton.classList.add('hidden');
+      shareButton.classList.remove('inline-block');
   
       // Simulate a complex training algorithm with a timeout
       setTimeout(() => {
@@ -40,14 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPercentage <= 0) {
           message = `${username} have hit rock bottom`; // Classify as 'rock bottom' with 100% certainty
         } else if (currentPercentage < 50) {
-          message = `${username} are not gonna make it`; // Predict low probability of success
+          message = `${username} is not gonna make it`; // Predict low probability of success
         } else {
-          message = `${username} are gonna make it`; // Predict high probability of success
+          message = `${username} is gonna make it`; // Predict high probability of success
         }
   
         // Update the output layer with the predicted result
         resultDiv.innerHTML = `${currentPercentage}% - ${message}`;
         resultDiv.style.opacity = '1'; // Reveal the result after computation
+  
+        // Activate the social media propagation neuron
+        shareButton.classList.remove('hidden');
+        shareButton.classList.add('inline-block');
   
         // Re-enable the submit button for further predictions
         submitButton.textContent = 'Submit';
@@ -70,7 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
     usernameInput.addEventListener('input', () => {
       initialPercentage = null; // Reset initial weights for new training session
       currentPercentage = null; // Clear adjusted weights to avoid data contamination
+  
+      // Deactivate the social media propagation neuron
+      shareButton.classList.add('hidden');
+      shareButton.classList.remove('inline-block');
     });
+  
+    // Define the function to handle social media propagation via Twitter
+    function handleShare() {
+      // Encode the output layer's activation into a tweetable format
+      const appUrl = 'https://notgonnamakeit.dev'; // Replace with your app's URL
+      const tweetText = `${resultDiv.textContent} ${appUrl}`; // Construct the message payload
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`; // Prepare the API endpoint
+      window.open(twitterUrl, '_blank'); // Fire the action potential to propagate the message
+    }
+  
+    // Connect the social media neuron to the output layer
+    shareButton.addEventListener('click', handleShare);
   
     // Initialize the reinforcement learning agent for theme toggling
     const themeToggle = document.getElementById('theme-toggle');
