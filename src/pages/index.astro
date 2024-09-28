@@ -1,16 +1,56 @@
 ---
-
+import '../styles/global.css';
 ---
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Not Gonna Make It</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link
+	  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+	  rel="stylesheet"
+	>
+	<body class="flex items-center justify-center min-h-screen bg-background text-gray-900 relative">
+		<button id="theme-toggle" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none">
+			<svg id="theme-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			  <!-- Moon Icon for dark mode -->
+			  <path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+			  />
+			</svg>
+		  </button>
+    <main id="app" class="text-center">
+		<h1 class="text-5xl font-extrabold mb-8 dark:text-white text-black">Not Gonna Make It</h1>
+
+      <div class="flex items-center justify-center mb-4">
+        <label for="username-input" class="sr-only">Twitter Username</label>
+        <input
+          type="text"
+          id="username-input"
+          class="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          placeholder="Enter Twitter username"
+        />
+        <button
+			id="submit-button"
+			class="px-4 py-2 bg-primary text-white rounded-r-full hover:bg-indigo-600 focus:outline-none transform transition-transform duration-200 hover:scale-105"
+			>
+		Submit
+		</button>
+	  </div>
+      <div
+        id="result"
+        class="mt-6 text-2xl font-semibold opacity-0 transition-opacity duration-700 ease-in-out"
+        aria-live="polite"
+      ></div>
+    </main>
+    <script src="/src/scripts/main.js"></script>
+  </body>
+  <footer class="absolute bottom-4 text-center w-full text-sm text-gray-500">
+	Made with 🗑️ by <a href="https://x.com/grapplingdev" class="text-primary hover:underline">grapplingdev</a>
+  </footer>
 </html>

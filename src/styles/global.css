@@ -1,0 +1,62 @@
+/* src/styles/global.css */
+
+/* Import Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+
+/* Apply custom font family */
+body {
+  @apply font-sans;
+}
+
+/* Light Mode Styles */
+body {
+  @apply bg-background text-gray-900;
+}
+
+/* Dark Mode Styles */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .bg-background {
+  @apply bg-gray-900;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+/* Button Styles */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+}
+
+/* Input Field Styles */
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+}
+
+/* Dark Mode Input and Button Styles */
+.dark input {
+  @apply bg-gray-800 text-gray-100 border-gray-700 placeholder-gray-500;
+}
+
+.dark button {
+  @apply bg-indigo-700 hover:bg-indigo-600 text-gray-100;
+}
+
+/* Result Text */
+.dark #result {
+  @apply text-gray-100;
+}
+
+/* Theme Toggle Button */
+.dark #theme-toggle {
+  @apply text-gray-300 hover:text-gray-400;
+}
