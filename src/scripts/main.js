@@ -29,7 +29,7 @@ function handleSubmit() {
     setTimeout(() => {
     // Initialize weights using a random Gaussian distribution if not already set
     if (initialPercentage === null) {
-        initialPercentage = Math.floor(Math.random() * 101); // Randomly initialize model parameters
+        initialPercentage = Math.floor(Math.random() * 100); // Randomly initialize model parameters between 0 and 99
         currentPercentage = initialPercentage;
     } else {
         // Perform backpropagation to update the weights based on the loss function
