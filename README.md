@@ -1,47 +1,159 @@
-# Astro Starter Kit: Minimal
+# Not Gonna Make It
 
-```sh
-npm create astro@latest -- --template minimal
+"Not Gonna Make It" is a web application that provides predictive analytics on the likelihood of success for a given Twitter user. Leveraging advanced algorithms and user input, the app generates a percentage score indicating the user's projected trajectory. The application is built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/), featuring a sleek design and dark mode functionality.
+
+## Table of Contents
+
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
+
+## Features
+
+- **Predictive Analytics**: Input a Twitter username to receive a calculated percentage indicating their likelihood of "making it."
+- **Dynamic Scoring Mechanism**: Each submission recalculates the score, providing up-to-date analytics based on the latest data.
+- **Dark Mode Toggle**: Users can switch between light and dark themes to enhance their viewing experience.
+- **Responsive Design**: Optimized for various devices, ensuring accessibility and usability across desktops, tablets, and mobile phones.
+
+## Demo
+
+Check out the live demo: [Not Gonna Make It](https://notgonnamakeit.dev)
+
+## Installation
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- npm or yarn
+
+### Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/dansholds/ngmi.git
+   cd your-repo-name
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+   or
+
+   ```bash
+   yarn install
+   ```
+
+3. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+   or
+
+   ```bash
+   yarn dev
+   ```
+
+4. **Open the app in your browser**
+
+   Navigate to `http://localhost:3000` to see the application running.
+
+## Usage
+
+1. **Enter a Twitter Username**
+
+   - Type a Twitter username into the input field.
+
+2. **Submit the Form**
+
+   - Click the "Submit" button or press "Enter" to initiate the analysis.
+
+3. **View the Prediction**
+
+   - The app will display a percentage score along with a message indicating the user's projected success.
+
+4. **Repeat as Needed**
+
+   - You can perform multiple analyses as desired.
+
+5. **Toggle Dark Mode**
+
+   - Click the moon/sun icon in the top-right corner to switch between light and dark themes.
+
+## Project Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
+your-project/
 ├── public/
+│   └── favicon.ico
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   │   └── index.astro
+│   ├── scripts/
+│   │   └── main.js
+│   └── styles/
+│       └── global.css
+├── package.json
+├── tailwind.config.cjs
+└── astro.config.mjs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **public/**: Static assets like the favicon.
+- **src/pages/**: Contains the main Astro page (`index.astro`).
+- **src/scripts/**: JavaScript files responsible for the app's functionality.
+- **src/styles/**: Global styles using Tailwind CSS.
+- **tailwind.config.cjs**: Configuration for Tailwind CSS.
+- **astro.config.mjs**: Configuration for Astro.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Contributing
 
-Any static assets, like images, can be placed in the `public/` directory.
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-## 🧞 Commands
+1. **Fork the repository**
+2. **Create a new branch**
 
-All commands are run from the root of the project, from a terminal:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. **Commit your changes**
 
-## 👀 Want to learn more?
+   ```bash
+   git commit -m "Add your feature"
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+4. **Push to the branch**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. **Open a pull request**
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- **Astro**: For providing a powerful and flexible static site generator.
+- **Tailwind CSS**: For the utility-first CSS framework that makes styling efficient.
+- **Heroicons**: For the high-quality icons used in the application.
+
+## Contact
+
+- **Author**: Your Name
+- **Website**: [yourwebsite.com](https://grapplingdev.com)
+- **Twitter**: [@yourusername](https://x.com/grapplingdev)
+- **GitHub**: [yourusername](https://github.com/dansholds)
