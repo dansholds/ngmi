@@ -154,6 +154,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 
 - **Author**: Your Name
-- **Website**: [yourwebsite.com](https://grapplingdev.com)
-- **Twitter**: [@yourusername](https://x.com/grapplingdev)
-- **GitHub**: [yourusername](https://github.com/dansholds)
+- **Website**: [grapplingdev.com](https://grapplingdev.com)
+- **Twitter**: [@grapplingdev](https://x.com/grapplingdev)
+- **GitHub**: [dansholds](https://github.com/dansholds)
